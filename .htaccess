@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /dry-tech/
+
+    # Skip existing files and directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirect all requests to index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+
+</IfModule>
+
+# Protect .env and hidden files
+
+<FilesMatch "^\.">
+Order allow,deny
+Deny from all
+</FilesMatch>
